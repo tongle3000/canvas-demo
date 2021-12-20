@@ -4,7 +4,8 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/wave">Wave(波浪)</router-link> |
     <router-link to="/wave2">Wave2(波浪)</router-link> |
-    <router-link to="/dot-line">点线</router-link>
+    <router-link to="/dot-line">点线</router-link> |
+    <router-link to="/tianti-yundong">天体运动</router-link>
   </div>
   <router-view/>
 </template>

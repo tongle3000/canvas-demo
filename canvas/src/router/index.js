@@ -29,6 +29,11 @@ const routes = [
     path: '/dot-line',
     name: 'DotLine',
     component: () => import(/* webpackChunkName: "about" */ '../views/DotLine')
+  },
+  {
+    path: '/tianti-yundong',
+    name: 'TiantiYundong',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TreeJS/TiantiYundong')
   }
 ]
 
