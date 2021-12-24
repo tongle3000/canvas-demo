@@ -44,6 +44,21 @@ export default {
             sphere.castShadow = true;
             scene.add(sphere);
 
+            // 圆柱体
+            const cylinderGeometry = new THREE.CylinderGeometry(2, 2, 6, 32);
+            const cylinderMaterial = new THREE.MeshLambertMaterial({ color: 0xffff00 });
+            const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+            cylinderMesh.position.set(-10, 2, 0);
+            cylinderMesh.castShadow = true;
+            scene.add(cylinderMesh);
+
+            // 边缘几何体
+            const geometry4 = new THREE.BoxBufferGeometry(4, 4, 4);
+            const edges4 = new THREE.EdgesGeometry(geometry4);
+            const line4 = new THREE.LineSegments(edges4, new THREE.LineBasicMaterial({ color: 0xffffff }));
+            line4.position.set(-30, 2, 0);
+            line4.castShadow = true;
+            scene.add(line4);
             // 光源
             const spotLight = new THREE.SpotLight(0xffffff);
             spotLight.position.set(30, 40, -10);
@@ -71,10 +86,6 @@ export default {
             document.getElementById('first1').appendChild(renderer.domElement);
             renderer.render(scene, camera);
 
-            // const render = () => {
-            //     renderer.render(scene, camera);
-            // }
-            // render();
             // 鼠标控制
             const controls = new OrbitControls(camera, renderer.domElement);
             controls.addEventListener('change', () => renderer.render(scene, camera));
