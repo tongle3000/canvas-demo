@@ -1,12 +1,12 @@
 <template>
-	<div id="container-tianti"></div>
+	<div id="container-tianti" style="width:100%; height:100%"></div>
 </template>
 <script>
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { onMounted } from 'vue';
-window.THREE = THREE;
+// window.THREE = THREE;
 // const canvasWidth = 600;
 // const canvasHeight = 400;
 // let ctx = null;
@@ -17,6 +17,7 @@ export default {
 		// 添加个 Offset ，通过调整它控制line实例的c值也就是对直线进行平移），并不断地调用之前写好的updatePointList方法，更新点的位置
 		let camera, scene, renderer;
 		let geometry, material, mesh;
+		// const container = document.getElementById('container-tianti');
 
 		function init() {
 			camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -32,7 +33,8 @@ export default {
 
 			renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setSize(window.innerWidth, window.innerHeight);
-			document.body.appendChild(renderer.domElement);
+			document.getElementById('container-tianti').appendChild(renderer.domElement);
+			// document.body.appendChild(renderer.domElement);
 		}
 
 		function animate() {

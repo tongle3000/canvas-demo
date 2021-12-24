@@ -33,7 +33,17 @@ const routes = [
   {
     path: '/tianti-yundong',
     name: 'TiantiYundong',
-    component: () => import(/* webpackChunkName: "about" */ '../views/TreeJS/TiantiYundong')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ThreeJS/TiantiYundong/index.vue')
+  },
+  {
+    path: '/Firstxyz',
+    name: 'firstxyz',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ThreeJS/Firstxyz/index.vue')
+  },
+  {
+    path: '/01',
+    name: '01',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ThreeJS/01.vue')
   }
 ]
 
