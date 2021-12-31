@@ -7,7 +7,8 @@
     <router-link to="/dot-line">点线</router-link> |
     <router-link to="/tianti-yundong">天体运动</router-link> |
     <router-link to="/firstxyz">第一个</router-link> |
-    <router-link to="/01">01</router-link>
+    <router-link to="/01">01</router-link> |
+    <router-link to="/02">02</router-link>
   </div>
   <router-view/>
 </template>
