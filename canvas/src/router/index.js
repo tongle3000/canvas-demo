@@ -44,6 +44,11 @@ const routes = [
     path: '/01',
     name: '01',
     component: () => import(/* webpackChunkName: "about" */ '../views/ThreeJS/01.vue')
+  },
+  {
+    path: '/02',
+    name: '02',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ThreeJS/02.vue')
   }
 ]
 
