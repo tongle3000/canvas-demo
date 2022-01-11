@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { onMounted } from 'vue';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default {
     name: '03',
@@ -19,6 +20,7 @@ export default {
         const clock = new THREE.Clock();
         // 实例化纹理加载器
         const textureLoader = new THREE.TextureLoader();
+        const gltfLoader = new GLTFLoader();
 
         // init
         const init = () => {
@@ -49,9 +51,9 @@ export default {
             scene.add(aLight);
 
             // 月球
-            const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 16, 16);
+            const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 32, 32);
             const moonMaterial = new THREE.MeshPhongMaterial({
-                // map: textureLoader.load('../../assets/img/start.png')
+                map: textureLoader.load('./models/03/yueqiu.jpg')
             })
             moon = new THREE.Mesh(moonGeometry, moonMaterial);
             moon.receiveShadow = true;
@@ -59,12 +61,12 @@ export default {
             scene.add(moon);
 
             // 地球
-            const earthGeometry = new THREE.SphereGeometry(EARTH_RADIUS, 16, 16);
+            const earthGeometry = new THREE.SphereGeometry(EARTH_RADIUS, 32, 32);
             const earthMaterial = new THREE.MeshPhongMaterial({
                 // shiniess: 5 // 镜面反光强度
-                // map: textureLoader.load('../../assets/img/earth.png')
-                // specularMap: textureLoader.load(''),
-                // normalMap: textureLoader.load('')
+                map: textureLoader.load('./models/03/earth.png')
+                // specularMap: textureLoader.load('../../assets/img/start.png')
+                // normalMap: textureLoader.load('../../assets/img/earth.jpg')
             });
             earth = new THREE.Mesh(earthGeometry, earthMaterial);
             earth.receiveShadow = true;
@@ -76,7 +78,7 @@ export default {
             earthDiv.className = 'label';
             earthDiv.textContent = 'Earth';
             const earthLabel = new CSS2DObject(earthDiv);
-            earthLabel.position.set(0, EARTH_RADIUS - EARTH_RADIUS, 0); // 放在地球的上方；
+            earthLabel.position.set(0, EARTH_RADIUS, 0); // 放在地球的上方；
             earth.add(earthLabel);
 
             // 文字-月球
@@ -98,6 +100,7 @@ export default {
             labelRenderer = new CSS2DRenderer();
             labelRenderer.setSize(width, height);
             labelRenderer.domElement.style.position = 'absolute';
+            labelRenderer.domElement.style.pointerEvents = 'none'; // 不加这句 controls鼠标控制会受到干扰；
             labelRenderer.domElement.style.top = '0px';
             document.getElementById('third').appendChild(labelRenderer.domElement);
 
@@ -107,11 +110,12 @@ export default {
 
             // 绑定控制和摄像机头 控制没用，可能是用了 2D
             controls = new OrbitControls(camera, renderer.domElement);
-            // controls.addEventListener('change', () => {
-            //     renderer.render(scene, camera)
-            //     labelRenderer.render(scene, camera)
-            // });
-            console.log(EARTH_RADIUS, controls)
+            controls.addEventListener('change', () => {
+                renderer.render(scene, camera)
+                // labelRenderer.render(scene, camera)
+            });
+            console.log(renderer.domElement, EARTH_RADIUS, controls)
+            helperFn();
         }
 
         // 动画
@@ -131,6 +135,16 @@ export default {
         }
         console.log(earth, CSS2DRenderer, CSS2DObject, labelRenderer, textureLoader)
 
+        // 加载苹果
+        gltfLoader.load('./models/apples/scene.gltf', (gltf) => {
+            scene.add(gltf.scene);
+            gltf.scene.scale.set(8, 8, 8); // (0.2, 0.2, 0.2) -> (1, 1, 1)放大
+            gltf.scene.position.set(0, 4, 0); // (x坐标, z坐标, y坐标) 3.2 站在地面上 人高度是6.4
+            // gltf.scene.children.forEach((element: { type: string; }) => {
+            //   let mesh: any = element;
+            // });
+        });
+
         // 窗口变化 canvas 跟着变
         window.addEventListener('resize', () => {
             width = window.innerWidth
@@ -142,6 +156,15 @@ export default {
             labelRenderer.setSize(width, height);
         }, false)
 
+        // 网格
+        const helperFn = () => {
+            const helper = new THREE.GridHelper(1000, 100);
+            helper.position.y = -10;
+            helper.material.opacity = 0.1;
+            helper.material.transparent = true;
+            scene.add(helper);
+        }
+
         onMounted(() => {
             init();
             animate();
@@ -152,5 +175,6 @@ export default {
 }
 </script>
 <style lang="scss">
-    // #third canvas { background: #000}
+    #third canvas { background-image: url('../../assets/img/start.png');}
+    #third .label { color:#fff}
 </style>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	ambientCG Preview - 3D Apple 001
+* source:	https://sketchfab.com/3d-models/ambientcg-preview-3d-apple-001-c43b3cf0d7804b998b8cd3a131f494aa
+* author:	struffelproductions (https://sketchfab.com/struffelproductions)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "ambientCG Preview - 3D Apple 001" (https://sketchfab.com/3d-models/ambientcg-preview-3d-apple-001-c43b3cf0d7804b998b8cd3a131f494aa) by struffelproductions (https://sketchfab.com/struffelproductions) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
