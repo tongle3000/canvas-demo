@@ -32,22 +32,6 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "@vue/standard"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {
-      "space-before-function-paren": 0
-    }
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
